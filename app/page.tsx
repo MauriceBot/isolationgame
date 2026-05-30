@@ -40,6 +40,7 @@ const TIERS: Tier[] = [
       { id: 'puzzles',     emoji: '🧩', name: 'Puzzle Books',             cost: 1, description: 'Crosswords, sudoku, logic puzzles — hundreds of them'                },
       { id: 'rubik',       emoji: '🎲', name: "A Rubik's Cube",           cost: 1, description: 'Solve it. Reset it. You have time.'                                 },
       { id: 'desk',        emoji: '🪑', name: 'A Desk & Chair',           cost: 2, description: 'Somewhere to sit that isn\'t the floor or the bed.'                 },
+      { id: 'treats',      emoji: '🍫', name: 'Daily Treats',             cost: 2, description: 'Chocolate, candy, whatever you like. A small reason to look forward to each day.' },
       { id: 'plant',       emoji: '🪴', name: 'A Plant',                  cost: 2, description: 'Something living to look after'                                    },
       { id: 'spices',      emoji: '🧂', name: 'Spices & Condiments',      cost: 2, description: 'Makes the porridge approximately 40% less depressing.'               },
       { id: 'tea',         emoji: '☕', name: 'Tea & Coffee (Daily)',      cost: 2, description: 'The porridge is non-negotiable. This isn\'t.'                       },
