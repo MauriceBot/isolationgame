@@ -98,7 +98,7 @@ const TIERS: Tier[] = [
       { id: 'kitchen',     emoji: '🍳',  name: 'A Full Kitchen',              cost: 10, description: 'Raw ingredients restocked weekly. Cook whatever you want.'     },
       { id: 'courtyard',   emoji: '🌤️',  name: 'Private Outdoor Courtyard',  cost: 11, description: 'Walled, open sky. Whenever you want, not on a schedule.'       },
       { id: 'internet',    emoji: '🌐',  name: 'Computer & Internet',         cost: 18, description: 'Unrestricted access. No monitoring. Or so you are told.'        },
-      { id: 'companion',   emoji: '🧑',  name: 'Human Companion',             cost: 18, description: 'Someone else shares your room.'                                },
+      { id: 'companion',   emoji: '🧑',  name: 'Human Companion',             cost: 18, description: 'Someone of your choosing shares your room for the full year. They have agreed to the terms.'  },
       { id: 'earlyrelease',emoji: '🗓️',  name: 'Early Release (3 Months)',    cost: 15, description: 'Serve 9 months instead of 12. No questions asked.'            },
     ],
   },
@@ -121,6 +121,10 @@ const TIERS: Tier[] = [
 
 const ALL_ITEMS = TIERS.flatMap(t => t.items)
 const ITEM_MAP = Object.fromEntries(ALL_ITEMS.map(i => [i.id, i]))
+
+const CONFLICTS: Record<string, string[]> = {
+  disappeared: ['internet', 'phone'],
+}
 
 const ITEM_PROMPTS: Record<string, string> = {
   console:    'Which game?',
@@ -157,13 +161,20 @@ export default function Home() {
   const remaining = BUDGET - spent
   const color = pointColor(remaining)
 
+  const lockedItems = new Set<string>()
+  Object.entries(CONFLICTS).forEach(([trigger, blocked]) => {
+    if (selected.has(trigger)) blocked.forEach(id => lockedItems.add(id))
+  })
+
   const toggle = (item: AmenityItem) => {
+    if (lockedItems.has(item.id)) return
     setSelected(prev => {
       const next = new Set(prev)
       if (next.has(item.id)) {
         next.delete(item.id)
       } else {
         next.add(item.id)
+        CONFLICTS[item.id]?.forEach(id => next.delete(id))
       }
       return next
     })
@@ -351,6 +362,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
               {tier.items.map(item => {
                 const isSelected = selected.has(item.id)
+                const isLocked = lockedItems.has(item.id)
                 const isMalus = tier.isMalus
 
                 const selBorder    = isMalus ? '#dc2626' : '#f59e0b'
@@ -367,11 +379,13 @@ export default function Home() {
                   <button
                     key={item.id}
                     onClick={() => toggle(item)}
-                    className="text-left rounded-[3px] border overflow-hidden group transition-all duration-300 cursor-pointer"
+                    className="text-left rounded-[3px] border overflow-hidden group transition-all duration-300"
                     style={{
-                      borderColor: isSelected ? selBorder : '#161616',
-                      backgroundColor: isSelected ? selBg : '#0f0f0f',
-                      boxShadow: isSelected ? selShadow : 'none',
+                      borderColor: isLocked ? '#111' : (isSelected ? selBorder : '#161616'),
+                      backgroundColor: isLocked ? '#0a0a0a' : (isSelected ? selBg : '#0f0f0f'),
+                      boxShadow: isLocked ? 'none' : (isSelected ? selShadow : 'none'),
+                      opacity: isLocked ? 0.3 : 1,
+                      cursor: isLocked ? 'not-allowed' : 'pointer',
                     }}
                   >
                     {/* Image area */}
