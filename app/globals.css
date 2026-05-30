@@ -24,3 +24,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes flash-red {
+  0%   { border-color: #333; }
+  20%  { border-color: #ef4444; box-shadow: 0 0 10px rgba(239,68,68,0.35); }
+  50%  { border-color: #ef4444; box-shadow: 0 0 10px rgba(239,68,68,0.35); }
+  80%  { border-color: #ef4444; box-shadow: 0 0 10px rgba(239,68,68,0.35); }
+  100% { border-color: #333; }
+}
+
+.input-error {
+  animation: flash-red 1.4s ease-in-out forwards;
+}
