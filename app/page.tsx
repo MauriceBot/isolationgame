@@ -18,7 +18,7 @@ interface Tier {
   note?: string
 }
 
-const BUDGET = 15
+const BUDGET = 20
 
 const TIERS: Tier[] = [
   {
@@ -266,7 +266,7 @@ export default function Home() {
             </p>
             <p className="text-[#777]">
               You have been allocated{' '}
-              <strong className="text-[#e8e2d9]">15 points</strong> to spend on
+              <strong className="text-[#e8e2d9]">20 points</strong> to spend on
               amenities. Choose wisely. This selection is final.
             </p>
           </div>
@@ -435,7 +435,7 @@ export default function Home() {
         <div className="border-t border-[#f59e0b]/30 bg-[#080808]/95 backdrop-blur-md">
           <div className="max-w-5xl mx-auto px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-[11px] text-[#666] tracking-wide">
-              15 / 15 points spent — your choices are locked in.
+              {BUDGET} / {BUDGET} points spent — your choices are locked in.
             </p>
             <button
               onClick={handleShare}
