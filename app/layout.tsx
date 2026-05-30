@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "One Year in Isolation",
-  description: "You have 15 points. Spend them wisely.",
+  description: "You have 20 points. Spend them wisely.",
 };
 
 export default function RootLayout({
