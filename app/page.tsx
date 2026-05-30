@@ -16,6 +16,7 @@ interface Tier {
   sublabel: string
   items: AmenityItem[]
   note?: string
+  isMalus?: boolean
 }
 
 const BUDGET = 20
@@ -26,34 +27,36 @@ const TIERS: Tier[] = [
     label: 'SMALL COMFORTS',
     sublabel: '1 – 3 pts',
     items: [
-      { id: 'sleepingbag', emoji: '🛌', name: 'Sleeping Bag',               cost: 1, description: 'Better than the bare floor'                                        },
-      { id: 'bathrobe',    emoji: '🩱', name: 'A Bathrobe',               cost: 1, description: 'Stepping out of a shower into a good robe is a daily luxury.'        },
-      { id: 'calendar',    emoji: '📅', name: 'A Calendar',               cost: 1, description: 'Cross off each day. Some find it motivating.'                        },
-      { id: 'candles',     emoji: '🕯️', name: 'Scented Candles',          cost: 1, description: 'Restocked monthly. A small but meaningful shift in atmosphere.'      },
-      { id: 'cards',       emoji: '🃏', name: 'Playing Cards',            cost: 1, description: '52 cards. Infinite ways to waste an afternoon.'                      },
-      { id: 'clock',       emoji: '🕰️', name: 'A Clock',                  cost: 1, description: 'Watch the seconds pass. All 31,536,000 of them.'                   },
-      { id: 'clothes',     emoji: '👕', name: 'A Change of Clothes',      cost: 1, description: 'Seven outfits, rotated weekly. Basic dignity.'                       },
-      { id: 'journal',     emoji: '📓', name: 'A Journal',                cost: 1, description: 'Write it all down. Someone should know what happened in here.'       },
-      { id: 'juggling',    emoji: '🤹', name: 'Juggling Balls',           cost: 1, description: "You'll have something to show for the year."                         },
-      { id: 'lavalamp',    emoji: '🫧', name: 'A Lava Lamp',              cost: 1, description: 'Slow, hypnotic movement. It will seem profound by week three.'       },
-      { id: 'mirror',      emoji: '🪞', name: 'A Mirror',                 cost: 1, description: 'See your own face. For better or worse.'                            },
-      { id: 'puzzles',     emoji: '🧩', name: 'Puzzle Books',             cost: 1, description: 'Crosswords, sudoku, logic puzzles — hundreds of them'                },
-      { id: 'rubik',       emoji: '🎲', name: "A Rubik's Cube",           cost: 1, description: 'Solve it. Reset it. You have time.'                                 },
-      { id: 'desk',        emoji: '🪑', name: 'A Desk & Chair',           cost: 2, description: 'Somewhere to sit that isn\'t the floor or the bed.'                 },
-      { id: 'treats',      emoji: '🍫', name: 'Daily Treats',             cost: 2, description: 'Chocolate, candy, whatever you like. A small reason to look forward to each day.' },
-      { id: 'plant',       emoji: '🪴', name: 'A Plant',                  cost: 2, description: 'Something living to look after'                                    },
-      { id: 'spices',      emoji: '🧂', name: 'Spices & Condiments',      cost: 2, description: 'Makes the porridge approximately 40% less depressing.'               },
-      { id: 'tea',         emoji: '☕', name: 'Tea & Coffee (Daily)',      cost: 2, description: 'The porridge is non-negotiable. This isn\'t.'                       },
-      { id: 'toiletries',  emoji: '🪥', name: 'Nice Toiletries',          cost: 2, description: 'Proper shampoo, soap, moisturiser, shaving gear, and scissors.'    },
-      { id: 'boardgames',  emoji: '♟️', name: 'Chess & Board Games',       cost: 3, description: 'Chess plus solo-playable variants of 20 classic games.'            },
-      { id: 'books',       emoji: '📚', name: '100 Classic Books',        cost: 3, description: 'A curated library of the greatest books ever written'               },
-      { id: 'hammock',     emoji: '🌴', name: 'A Hammock',                cost: 3, description: 'Suspend yourself between the walls. The ceiling becomes the sky.'   },
-      { id: 'headphones',  emoji: '🎧', name: 'Noise-Cancelling Headphones', cost: 3, description: "You're already in a soundproof room. A personal choice."       },
-      { id: 'mattress',    emoji: '🛏️', name: 'Comfy Mattress',           cost: 3, description: 'A decent mattress to actually sleep on'                           },
-      { id: 'sketchbook',  emoji: '🎨', name: 'Sketchbook & Art Supplies', cost: 3, description: 'Draw, paint, keep your hands busy'                               },
-      { id: 'window',      emoji: '🪟', name: 'A Window',                 cost: 3, description: 'A view of the outside world'                                      },
-      { id: 'shower',      emoji: '🚿', name: 'Hot Shower',               cost: 3, description: 'Daily hot shower instead of a basin'                              },
-      { id: 'toilet',      emoji: '🚽', name: 'Luxury Japanese Toilet',   cost: 2, description: 'Heated seat, bidet, dryer — a small but meaningful dignity'       },
+      { id: 'aquarium',    emoji: '🐠', name: 'A Small Aquarium',             cost: 1, description: "Fish don't talk back. After six months, you'll appreciate that."  },
+      { id: 'bathrobe',    emoji: '🩱', name: 'A Bathrobe',                   cost: 1, description: 'Stepping out of a shower into a good robe is a daily luxury.'     },
+      { id: 'calendar',    emoji: '📅', name: 'A Calendar',                   cost: 1, description: 'Cross off each day. Some find it motivating.'                     },
+      { id: 'candles',     emoji: '🕯️', name: 'Scented Candles',              cost: 1, description: 'Restocked monthly. A small but meaningful shift in atmosphere.'   },
+      { id: 'cards',       emoji: '🃏', name: 'Playing Cards',                cost: 1, description: '52 cards. Infinite ways to waste an afternoon.'                   },
+      { id: 'clock',       emoji: '🕰️', name: 'A Clock',                      cost: 1, description: 'Watch the seconds pass. All 31,536,000 of them.'                 },
+      { id: 'clothes',     emoji: '👕', name: 'A Change of Clothes',          cost: 1, description: 'Seven outfits, rotated weekly. Basic dignity.'                    },
+      { id: 'journal',     emoji: '📓', name: 'A Journal',                    cost: 1, description: 'Write it all down. Someone should know what happened in here.'    },
+      { id: 'juggling',    emoji: '🤹', name: 'Juggling Balls',               cost: 1, description: "You'll have something to show for the year."                      },
+      { id: 'lavalamp',    emoji: '🫧', name: 'A Lava Lamp',                  cost: 1, description: 'Slow, hypnotic movement. It will seem profound by week three.'    },
+      { id: 'mirror',      emoji: '🪞', name: 'A Mirror',                     cost: 1, description: 'See your own face. For better or worse.'                         },
+      { id: 'puzzles',     emoji: '🧩', name: 'Puzzle Books',                 cost: 1, description: 'Crosswords, sudoku, logic puzzles — hundreds of them.'           },
+      { id: 'rubik',       emoji: '🎲', name: "A Rubik's Cube",               cost: 1, description: 'Solve it. Reset it. You have time.'                              },
+      { id: 'sleepingbag', emoji: '🛌', name: 'Sleeping Bag',                 cost: 1, description: 'Better than the bare floor.'                                     },
+      { id: 'desk',        emoji: '🪑', name: 'A Desk & Chair',               cost: 2, description: "Somewhere to sit that isn't the floor or the bed."               },
+      { id: 'punchbag',    emoji: '🥊', name: 'A Punching Bag',               cost: 2, description: 'Regulation size. The padded walls are not designed for this.'    },
+      { id: 'spices',      emoji: '🧂', name: 'Spices & Condiments',          cost: 2, description: 'Makes the porridge approximately 40% less depressing.'           },
+      { id: 'tea',         emoji: '☕', name: 'Tea & Coffee (Daily)',          cost: 2, description: "The porridge is non-negotiable. This isn't."                     },
+      { id: 'toiletries',  emoji: '🪥', name: 'Nice Toiletries',              cost: 2, description: 'Proper shampoo, soap, moisturiser, shaving gear, and scissors.'  },
+      { id: 'toilet',      emoji: '🚽', name: 'Luxury Japanese Toilet',       cost: 2, description: 'Heated seat, bidet, dryer — a small but meaningful dignity.'     },
+      { id: 'treats',      emoji: '🍫', name: 'Daily Treats',                 cost: 2, description: 'Chocolate, candy, whatever you like. A small reason to look forward to each day.' },
+      { id: 'boardgames',  emoji: '♟️', name: 'Chess & Board Games',          cost: 3, description: 'Chess plus solo-playable variants of 20 classic games.'          },
+      { id: 'books',       emoji: '📚', name: '100 Classic Books',            cost: 3, description: 'A curated library of the greatest books ever written.'           },
+      { id: 'hammock',     emoji: '🌴', name: 'A Hammock',                    cost: 3, description: 'Suspend yourself between the walls. The ceiling becomes the sky.' },
+      { id: 'headphones',  emoji: '🎧', name: 'Noise-Cancelling Headphones',  cost: 3, description: "You're already in a soundproof room. A personal choice."        },
+      { id: 'mattress',    emoji: '🛏️', name: 'Comfy Mattress',               cost: 3, description: 'A decent mattress to actually sleep on.'                        },
+      { id: 'plant',       emoji: '🪴', name: 'Plants',                       cost: 3, description: 'Any amount, any variety. They will not die.'                    },
+      { id: 'shower',      emoji: '🚿', name: 'Hot Shower',                   cost: 3, description: 'Daily hot shower instead of a basin.'                           },
+      { id: 'sketchbook',  emoji: '🎨', name: 'Sketchbook & Art Supplies',    cost: 3, description: 'Draw, paint, keep your hands busy.'                             },
+      { id: 'window',      emoji: '🪟', name: 'A Window',                     cost: 3, description: 'A view of the outside world.'                                   },
     ],
   },
   {
@@ -61,43 +64,57 @@ const TIERS: Tier[] = [
     label: 'DAILY NEEDS',
     sublabel: '4 – 7 pts',
     items: [
-      { id: 'aquarium',   emoji: '🐠', name: 'A Small Aquarium',              cost: 4, description: "Fish don't talk back. After six months, you'll appreciate that."  },
-      { id: 'punchbag',   emoji: '🥊', name: 'A Punching Bag',               cost: 4, description: 'Regulation size. The padded walls are not designed for this.'      },
-      { id: 'radio',      emoji: '📻', name: 'A Radio',                       cost: 4, description: 'Live broadcasts, whatever happens to be on.'                      },
-      { id: 'language',   emoji: '🗣️', name: 'Language Learning Course',      cost: 4, description: 'Come out fluent in something new.'                               },
-      { id: 'alcohol',    emoji: '🍷', name: 'Alcohol (Daily Allowance)',      cost: 5, description: 'Beer, wine, or spirits. A reasonable amount, by their definition.' },
-      { id: 'dvd',        emoji: '📀', name: 'DVD Player & 100 Movies',       cost: 5, description: '100 films across various genres on a portable player.'            },
-      { id: 'guitar',     emoji: '🎸', name: 'A Guitar',                      cost: 5, description: 'No lessons included. Figure it out.'                              },
-      { id: 'keyboard',   emoji: '🎹', name: 'A Keyboard & Songbook',         cost: 5, description: 'Easier to learn alone than the guitar. Debatable.'                },
-      { id: 'music',      emoji: '🎵', name: 'Record Player & 100 CDs',       cost: 5, description: '100 albums across various genres — selections are not up to you.' },
-      { id: 'food',       emoji: '🍔', name: 'Comfort Meal (Daily)',           cost: 5, description: 'One meal of your choice, every day.'                             },
-      { id: 'telescope',  emoji: '🔭', name: 'A Telescope',                   cost: 5, description: 'Pairs well with a window. Sold separately.'                      },
-      { id: 'laptop',     emoji: '💻', name: 'A Laptop (No Internet)',         cost: 6, description: 'Write, create, organise. Offline only. They checked.'            },
-      { id: 'console',    emoji: '🎮', name: 'Console & One Game',            cost: 7, description: 'One console. One game. Choose carefully.'                         },
-      { id: 'phone',      emoji: '📞', name: 'Phone Calls',                   cost: 7, description: '30 min/day to anyone on the outside.'                            },
-      { id: 'luxurybed',  emoji: '🛋️', name: 'Luxury Bed (Full Amenities)',   cost: 7, description: 'Premium mattress, weighted blanket, memory foam pillows — the works.' },
+      { id: 'language',    emoji: '🗣️', name: 'Language Learning Course',     cost: 4, description: 'Come out fluent in something new.'                              },
+      { id: 'radio',       emoji: '📻', name: 'A Radio',                       cost: 4, description: 'Live broadcasts, whatever happens to be on.'                   },
+      { id: 'alcohol',     emoji: '🍷', name: 'Alcohol (Daily Allowance)',     cost: 5, description: 'Beer, wine, or spirits. A reasonable amount, by their definition.' },
+      { id: 'jacuzzi',     emoji: '🫧', name: 'A Jacuzzi',                    cost: 5, description: 'Plumbed in, jets included. Takes up a third of the room.'            },
+      { id: 'crafts',      emoji: '✂️',  name: 'Unlimited Craft Supplies',     cost: 5, description: 'Paper, paint, thread, clay — enough to cover every surface if it comes to that.' },
+      { id: 'dvd',         emoji: '📀', name: 'DVD Player & 100 Movies',      cost: 5, description: '100 films across various genres on a portable player.'          },
+      { id: 'food',        emoji: '🍔', name: 'Comfort Meal (Daily)',          cost: 5, description: 'One meal of your choice, every day.'                           },
+      { id: 'guitar',      emoji: '🎸', name: 'A Guitar',                     cost: 5, description: 'No lessons included. Figure it out.'                            },
+      { id: 'keyboard',    emoji: '🎹', name: 'A Keyboard & Songbook',        cost: 5, description: 'Easier to learn alone than the guitar. Debatable.'              },
+      { id: 'luxurybed',   emoji: '🛋️', name: 'Luxury Bed (Full Amenities)',  cost: 5, description: 'Premium mattress, weighted blanket, memory foam pillows — the works.' },
+      { id: 'music',       emoji: '🎵', name: 'Record Player & 100 CDs',      cost: 5, description: '100 albums across various genres — selections are not up to you.' },
+      { id: 'sports',      emoji: '⚽',  name: 'Live Sports Streaming',        cost: 5, description: 'Every match, every league. Time zones will lose all meaning.'   },
+      { id: 'telescope',   emoji: '🔭', name: 'A Telescope',                  cost: 5, description: 'Pairs well with a window. Sold separately.'                    },
+      { id: 'therapist',   emoji: '🧠',  name: 'Therapist (Weekly Session)',   cost: 5, description: 'One hour a week with a professional who knew this was coming.' },
+      { id: 'trainer',     emoji: '🏃',  name: 'Personal Trainer (Weekly)',    cost: 5, description: 'Video sessions. Keeps you structured when structure disappears.' },
+      { id: 'laptop',      emoji: '💻', name: 'A Laptop (No Internet)',        cost: 6, description: 'Write, create, organise. Offline only. They checked.'          },
+      { id: 'console',     emoji: '🎮', name: 'Console & One Game',           cost: 7, description: 'One console. One game. Choose carefully.'                       },
+      { id: 'phone',       emoji: '📞', name: 'Phone Calls',                  cost: 7, description: '30 min/day to anyone on the outside.'                          },
     ],
   },
   {
     number: 'III',
     label: 'PREMIUM PRIVILEGES',
-    sublabel: '8 – 15 pts',
+    sublabel: '8 – 18 pts',
     note: '* A discreet flap is built into the wall. Your pet handles all outdoor needs independently — no walks, no mess, no exceptions.',
     items: [
-      { id: 'exercise',    emoji: '🏋️', name: 'Exercise Equipment',          cost: 8,  description: 'A full set to keep your body from falling apart.'                          },
-      { id: 'crafts',      emoji: '✂️',  name: 'Unlimited Craft Supplies',    cost: 8,  description: 'Paper, paint, thread, clay — enough to cover every surface if it comes to that.' },
-      { id: 'sports',      emoji: '⚽',  name: 'Live Sports Streaming',       cost: 8,  description: 'Every match, every league. Time zones will lose all meaning.'             },
-      { id: 'therapist',   emoji: '🧠',  name: 'Therapist (Weekly Session)',  cost: 8,  description: 'One hour a week with a professional who knew this was coming.'             },
-      { id: 'trainer',     emoji: '🏃',  name: 'Personal Trainer (Weekly)',   cost: 8,  description: 'Video sessions. Keeps you structured when structure disappears.'          },
+      { id: 'exercise',    emoji: '🏋️', name: 'Exercise Equipment',          cost: 8,  description: 'A full set to keep your body from falling apart.'                },
       { id: 'cinema',      emoji: '🎬',  name: 'Home Cinema Setup',           cost: 9,  description: 'Projector, surround sound, full screen. Comes with 100 various films.' },
-      { id: 'cat',         emoji: '🐈',  name: 'A Cat',                       cost: 10, description: 'Quiet, self-sufficient, and oddly comforting.'                            },
-      { id: 'drugs',       emoji: '💊',  name: 'Recreational Drugs',          cost: 10, description: 'A varied monthly supply. The forms you signed covered this.'             },
-      { id: 'dog',         emoji: '🐕',  name: 'A Dog',                       cost: 10, description: 'Loyal company through every one of those 365 days.'                      },
-      { id: 'kitchen',     emoji: '🍳',  name: 'A Full Kitchen',              cost: 10, description: 'Raw ingredients restocked weekly. Cook whatever you want.'               },
-      { id: 'courtyard',   emoji: '🌤️',  name: 'Private Outdoor Courtyard',  cost: 11, description: 'Walled, open sky. Whenever you want, not on a schedule.'                 },
-      { id: 'jacuzzi',     emoji: '🫧',  name: 'A Jacuzzi',                   cost: 10, description: 'Plumbed in, jets included. Takes up a third of the room.'             },
-      { id: 'companion',   emoji: '🧑',  name: 'Human Companion',             cost: 13, description: 'Someone else shares your room.'                                           },
-      { id: 'earlyrelease',emoji: '🗓️',  name: 'Early Release (3 Months)',    cost: 15, description: 'Serve 9 months instead of 12. No questions asked.'                      },
+      { id: 'cat',         emoji: '🐈',  name: 'A Cat',                       cost: 10, description: 'Quiet, self-sufficient, and oddly comforting.'                  },
+      { id: 'dog',         emoji: '🐕',  name: 'A Dog',                       cost: 10, description: 'Loyal company through every one of those 365 days.'            },
+      { id: 'drugs',       emoji: '💊',  name: 'Recreational Drugs',          cost: 10, description: 'A varied monthly supply. The forms you signed covered this.'   },
+      { id: 'kitchen',     emoji: '🍳',  name: 'A Full Kitchen',              cost: 10, description: 'Raw ingredients restocked weekly. Cook whatever you want.'     },
+      { id: 'courtyard',   emoji: '🌤️',  name: 'Private Outdoor Courtyard',  cost: 11, description: 'Walled, open sky. Whenever you want, not on a schedule.'       },
+      { id: 'internet',    emoji: '🌐',  name: 'Computer & Internet',         cost: 18, description: 'Unrestricted access. No monitoring. Or so you are told.'        },
+      { id: 'companion',   emoji: '🧑',  name: 'Human Companion',             cost: 18, description: 'Someone else shares your room.'                                },
+      { id: 'earlyrelease',emoji: '🗓️',  name: 'Early Release (3 Months)',    cost: 15, description: 'Serve 9 months instead of 12. No questions asked.'            },
+    ],
+  },
+  {
+    number: 'IV',
+    label: 'MALUSES',
+    sublabel: 'earn points',
+    isMalus: true,
+    items: [
+      { id: 'livestreamed', emoji: '📹', name: 'Fully Livestreamed',       cost: -8,  description: 'Every moment of your stay is broadcast live. Thousands will watch.' },
+      { id: 'disappeared',  emoji: '🫥', name: 'Nobody Knows You\'re Here', cost: -20, description: 'Your location is classified. No one has been informed. As far as the outside world is concerned, you simply vanished.' },
+      { id: 'wakeup',       emoji: '🌙', name: 'Nightly Disturbance',      cost: -3,  description: 'Once per night, at a random hour, something will wake you. The schedule is not disclosed.' },
+      { id: 'dimlights',    emoji: '🔅', name: 'Permanent Dim Lighting',   cost: -3,  description: 'Lights fixed at 20% capacity. Not dark enough to sleep easily. Not bright enough to read comfortably.' },
+      { id: 'coldshower',   emoji: '🧊', name: 'Cold Showers Only',         cost: -3,  description: 'The hot water option is disabled. Showers run at 12°C. You will get used to it or you will not.' },
+      { id: 'loudnoise',    emoji: '📢', name: 'Random Loud Noise',         cost: -5,  description: 'At irregular intervals, a tone plays for approximately 3 seconds. Frequency and timing are not disclosed.' },
+      { id: 'amenityreview',emoji: '🎲', name: 'Amenity Review',            cost: -10, description: 'On day 1, day 90, and day 270, one of your items is selected at random and permanently removed. You are not consulted.' },
     ],
   },
 ]
@@ -132,6 +149,11 @@ export default function Home() {
   const inputRefs = useRef<Record<string, HTMLInputElement | null>>({})
 
   const spent = Array.from(selected).reduce((sum, id) => sum + (ITEM_MAP[id]?.cost ?? 0), 0)
+  const bonusPoints = Array.from(selected).reduce((sum, id) => {
+    const cost = ITEM_MAP[id]?.cost ?? 0
+    return cost < 0 ? sum + Math.abs(cost) : sum
+  }, 0)
+  const effectiveBudget = BUDGET + bonusPoints
   const remaining = BUDGET - spent
   const color = pointColor(remaining)
 
@@ -151,19 +173,33 @@ export default function Home() {
     const lines: string[] = []
     lines.push('🔒 **ONE YEAR IN ISOLATION** — My Picks')
     lines.push('')
+
+    // Roll amenity removals
+    const removedItems = new Map<string, number>()
+    if (selected.has('amenityreview')) {
+      const eligible = ALL_ITEMS.filter(i => selected.has(i.id) && i.id !== 'amenityreview')
+      const shuffled = [...eligible].sort(() => Math.random() - 0.5)
+      ;[1, 90, 270].forEach((day, idx) => {
+        if (shuffled[idx]) removedItems.set(shuffled[idx].id, day)
+      })
+    }
+
     TIERS.forEach(tier => {
       const picks = tier.items.filter(i => selected.has(i.id))
       if (picks.length === 0) return
       lines.push(`**— ${tier.label} —**`)
       picks.forEach(item => {
-        let line = `${item.emoji}  ${item.name} · ${item.cost}pt`
+        const costLabel = item.cost < 0 ? `+${Math.abs(item.cost)}pt` : `${item.cost}pt`
+        let line = `${item.emoji}  ${item.name} · ${costLabel}`
         const input = itemInputs[item.id]?.trim()
         if (input) line += `  *(${input})*`
+        const removedDay = removedItems.get(item.id)
+        if (removedDay !== undefined) line = `~~${line}~~  *(removed day ${removedDay})*`
         lines.push(line)
       })
       lines.push('')
     })
-    lines.push(`**${BUDGET}/${BUDGET} points spent · ${selected.size} item${selected.size !== 1 ? 's' : ''}**`)
+    lines.push(`**${effectiveBudget}/${effectiveBudget} points spent · ${selected.size} item${selected.size !== 1 ? 's' : ''}**`)
     return lines.join('\n')
   }
 
@@ -201,7 +237,12 @@ export default function Home() {
             >
               {remaining}
             </span>
-            <span className="text-[10px] tracking-widest text-[#666]">/ {BUDGET} PTS</span>
+            <span className="text-[10px] tracking-widest text-[#666]">/ {effectiveBudget} PTS</span>
+            {bonusPoints > 0 && (
+              <span className="text-[9px] tracking-widest text-[#4ade80]">
+                +{bonusPoints} BONUS
+              </span>
+            )}
             {remaining < 0 && (
               <span className="text-[9px] tracking-widest uppercase transition-colors duration-300" style={{ color: '#f87171' }}>
                 OVER BUDGET
@@ -212,7 +253,7 @@ export default function Home() {
         <div className="h-[2px] bg-[#111]">
           <div
             className="h-full transition-all duration-700 ease-out"
-            style={{ width: `${Math.max(0, (remaining / BUDGET) * 100)}%`, backgroundColor: color }}
+            style={{ width: `${Math.max(0, (remaining / effectiveBudget) * 100)}%`, backgroundColor: color }}
           />
         </div>
       </div>
@@ -310,6 +351,17 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
               {tier.items.map(item => {
                 const isSelected = selected.has(item.id)
+                const isMalus = tier.isMalus
+
+                const selBorder    = isMalus ? '#dc2626' : '#f59e0b'
+                const selBg        = isMalus ? '#120000' : '#120f00'
+                const selImgBg     = isMalus ? '#1a0000' : '#1a1300'
+                const selImgBorder = isMalus ? '#2a0000' : '#2a1e00'
+                const selShadow    = isMalus ? '0 0 24px rgba(220,38,38,0.15)' : '0 0 24px rgba(245,158,11,0.12)'
+                const selNameColor = isMalus ? '#f87171' : '#f59e0b'
+                const selBadgeBg   = isMalus ? '#dc2626' : '#f59e0b'
+                const selBadgeColor= isMalus ? '#fff'    : '#000'
+                const badgeLabel   = isMalus ? `+${Math.abs(item.cost)}PT` : `${item.cost}PT`
 
                 return (
                   <button
@@ -317,30 +369,36 @@ export default function Home() {
                     onClick={() => toggle(item)}
                     className="text-left rounded-[3px] border overflow-hidden group transition-all duration-300 cursor-pointer"
                     style={{
-                      borderColor: isSelected ? '#f59e0b' : '#161616',
-                      backgroundColor: isSelected ? '#120f00' : '#0f0f0f',
-                      boxShadow: isSelected ? '0 0 24px rgba(245,158,11,0.12)' : 'none',
+                      borderColor: isSelected ? selBorder : '#161616',
+                      backgroundColor: isSelected ? selBg : '#0f0f0f',
+                      boxShadow: isSelected ? selShadow : 'none',
                     }}
                   >
                     {/* Image area */}
                     <div
                       className="flex items-center justify-center py-7 transition-colors duration-300 relative"
                       style={{
-                        backgroundColor: isSelected ? '#1a1300' : '#111111',
-                        borderBottom: `1px solid ${isSelected ? '#2a1e00' : '#161616'}`,
+                        backgroundColor: isSelected ? selImgBg : '#111111',
+                        borderBottom: `1px solid ${isSelected ? selImgBorder : '#161616'}`,
                       }}
                     >
                       <span className="text-[2.75rem] leading-none select-none">{item.emoji}</span>
 
-                      {/* Checkmark badge */}
+                      {/* Checkmark / X badge */}
                       {isSelected && (
                         <div
                           className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full flex items-center justify-center"
-                          style={{ backgroundColor: '#f59e0b' }}
+                          style={{ backgroundColor: selBadgeBg }}
                         >
-                          <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
-                            <path d="M1 3.5L3.2 5.5L8 1" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
+                          {isMalus ? (
+                            <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+                              <path d="M1.5 1.5L7.5 7.5M7.5 1.5L1.5 7.5" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
+                            </svg>
+                          ) : (
+                            <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
+                              <path d="M1 3.5L3.2 5.5L8 1" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          )}
                         </div>
                       )}
                     </div>
@@ -350,18 +408,18 @@ export default function Home() {
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <span
                           className="text-[13px] font-bold tracking-wide leading-tight transition-colors duration-300"
-                          style={{ color: isSelected ? '#f59e0b' : '#c8c2bb' }}
+                          style={{ color: isSelected ? selNameColor : '#c8c2bb' }}
                         >
                           {item.name}
                         </span>
                         <span
                           className="text-[9px] font-bold tracking-widest px-2 py-0.5 rounded-[2px] shrink-0 transition-colors duration-300"
                           style={{
-                            backgroundColor: isSelected ? '#f59e0b' : '#1e1e1e',
-                            color: isSelected ? '#000' : '#777',
+                            backgroundColor: isSelected ? selBadgeBg : '#1e1e1e',
+                            color: isSelected ? selBadgeColor : (isMalus ? '#4ade80' : '#777'),
                           }}
                         >
-                          {item.cost}PT
+                          {badgeLabel}
                         </span>
                       </div>
                       <p className="text-[11px] text-[#777] italic leading-relaxed">
@@ -436,7 +494,7 @@ export default function Home() {
         <div className="border-t border-[#f59e0b]/30 bg-[#080808]/95 backdrop-blur-md">
           <div className="max-w-5xl mx-auto px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-[11px] text-[#666] tracking-wide">
-              {BUDGET} / {BUDGET} points spent — your choices are locked in.
+              {effectiveBudget} / {effectiveBudget} points spent — your choices are locked in.
             </p>
             <button
               onClick={handleShare}
