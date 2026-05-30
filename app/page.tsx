@@ -39,21 +39,20 @@ const TIERS: Tier[] = [
       { id: 'mirror',      emoji: '🪞', name: 'A Mirror',                 cost: 1, description: 'See your own face. For better or worse.'                            },
       { id: 'puzzles',     emoji: '🧩', name: 'Puzzle Books',             cost: 1, description: 'Crosswords, sudoku, logic puzzles — hundreds of them'                },
       { id: 'rubik',       emoji: '🎲', name: "A Rubik's Cube",           cost: 1, description: 'Solve it. Reset it. You have time.'                                 },
-      { id: 'chess',       emoji: '♟️', name: 'A Chess Set',              cost: 2, description: 'Play both sides. At least one of you will win.'                     },
       { id: 'desk',        emoji: '🪑', name: 'A Desk & Chair',           cost: 2, description: 'Somewhere to sit that isn\'t the floor or the bed.'                 },
       { id: 'plant',       emoji: '🪴', name: 'A Plant',                  cost: 2, description: 'Something living to look after'                                    },
       { id: 'spices',      emoji: '🧂', name: 'Spices & Condiments',      cost: 2, description: 'Makes the porridge approximately 40% less depressing.'               },
       { id: 'tea',         emoji: '☕', name: 'Tea & Coffee (Daily)',      cost: 2, description: 'The porridge is non-negotiable. This isn\'t.'                       },
-      { id: 'toiletries',  emoji: '🪥', name: 'Nice Toiletries',          cost: 2, description: 'Proper shampoo, soap, moisturiser. The basics beyond basic.'         },
+      { id: 'toiletries',  emoji: '🪥', name: 'Nice Toiletries',          cost: 2, description: 'Proper shampoo, soap, moisturiser, shaving gear, and scissors.'    },
+      { id: 'boardgames',  emoji: '♟️', name: 'Chess & Board Games',       cost: 3, description: 'Chess plus solo-playable variants of 20 classic games.'            },
       { id: 'books',       emoji: '📚', name: '100 Classic Books',        cost: 3, description: 'A curated library of the greatest books ever written'               },
       { id: 'hammock',     emoji: '🌴', name: 'A Hammock',                cost: 3, description: 'Suspend yourself between the walls. The ceiling becomes the sky.'   },
       { id: 'headphones',  emoji: '🎧', name: 'Noise-Cancelling Headphones', cost: 3, description: "You're already in a soundproof room. A personal choice."       },
       { id: 'mattress',    emoji: '🛏️', name: 'Comfy Mattress',           cost: 3, description: 'A decent mattress to actually sleep on'                           },
-      { id: 'skincare',    emoji: '🧴', name: 'Premium Skincare Set',     cost: 3, description: 'Come out looking better than you went in. At least physically.'    },
       { id: 'sketchbook',  emoji: '🎨', name: 'Sketchbook & Art Supplies', cost: 3, description: 'Draw, paint, keep your hands busy'                               },
       { id: 'window',      emoji: '🪟', name: 'A Window',                 cost: 3, description: 'A view of the outside world'                                      },
       { id: 'shower',      emoji: '🚿', name: 'Hot Shower',               cost: 3, description: 'Daily hot shower instead of a basin'                              },
-      { id: 'toilet',      emoji: '🚽', name: 'Luxury Japanese Toilet',   cost: 3, description: 'Heated seat, bidet, dryer — a small but meaningful dignity'       },
+      { id: 'toilet',      emoji: '🚽', name: 'Luxury Japanese Toilet',   cost: 2, description: 'Heated seat, bidet, dryer — a small but meaningful dignity'       },
     ],
   },
   {
@@ -62,7 +61,6 @@ const TIERS: Tier[] = [
     sublabel: '4 – 7 pts',
     items: [
       { id: 'aquarium',   emoji: '🐠', name: 'A Small Aquarium',              cost: 4, description: "Fish don't talk back. After six months, you'll appreciate that."  },
-      { id: 'boardgames', emoji: '🎲', name: 'Board Games Collection',        cost: 4, description: 'Solo-playable variants of 20 classic games.'                        },
       { id: 'punchbag',   emoji: '🥊', name: 'A Punching Bag',               cost: 4, description: 'Regulation size. The padded walls are not designed for this.'      },
       { id: 'radio',      emoji: '📻', name: 'A Radio',                       cost: 4, description: 'Live broadcasts, whatever happens to be on.'                      },
       { id: 'language',   emoji: '🗣️', name: 'Language Learning Course',      cost: 4, description: 'Come out fluent in something new.'                               },
@@ -90,14 +88,13 @@ const TIERS: Tier[] = [
       { id: 'sports',      emoji: '⚽',  name: 'Live Sports Streaming',       cost: 8,  description: 'Every match, every league. Time zones will lose all meaning.'             },
       { id: 'therapist',   emoji: '🧠',  name: 'Therapist (Weekly Session)',  cost: 8,  description: 'One hour a week with a professional who knew this was coming.'             },
       { id: 'trainer',     emoji: '🏃',  name: 'Personal Trainer (Weekly)',   cost: 8,  description: 'Video sessions. Keeps you structured when structure disappears.'          },
-      { id: 'cinema',      emoji: '🎬',  name: 'Home Cinema Setup',           cost: 9,  description: 'Projector, surround sound, full screen. No window required.'             },
+      { id: 'cinema',      emoji: '🎬',  name: 'Home Cinema Setup',           cost: 9,  description: 'Projector, surround sound, full screen. Comes with 100 various films.' },
       { id: 'cat',         emoji: '🐈',  name: 'A Cat',                       cost: 10, description: 'Quiet, self-sufficient, and oddly comforting.'                            },
       { id: 'drugs',       emoji: '💊',  name: 'Recreational Drugs',          cost: 10, description: 'A varied monthly supply. The forms you signed covered this.'             },
       { id: 'dog',         emoji: '🐕',  name: 'A Dog',                       cost: 10, description: 'Loyal company through every one of those 365 days.'                      },
-      { id: 'hottub',      emoji: '🛁',  name: 'A Hot Tub',                   cost: 10, description: "Plumbed directly into the room. The logistics were someone else's problem." },
       { id: 'kitchen',     emoji: '🍳',  name: 'A Full Kitchen',              cost: 10, description: 'Raw ingredients restocked weekly. Cook whatever you want.'               },
       { id: 'courtyard',   emoji: '🌤️',  name: 'Private Outdoor Courtyard',  cost: 11, description: 'Walled, open sky. Whenever you want, not on a schedule.'                 },
-      { id: 'jacuzzi',     emoji: '🫧',  name: 'A Jacuzzi',                   cost: 12, description: 'Larger and more indulgent than the hot tub. Takes up a third of the room.' },
+      { id: 'jacuzzi',     emoji: '🫧',  name: 'A Jacuzzi',                   cost: 10, description: 'Plumbed in, jets included. Takes up a third of the room.'             },
       { id: 'companion',   emoji: '🧑',  name: 'Human Companion',             cost: 13, description: 'Someone else shares your room.'                                           },
       { id: 'earlyrelease',emoji: '🗓️',  name: 'Early Release (3 Months)',    cost: 15, description: 'Serve 9 months instead of 12. No questions asked.'                      },
     ],
@@ -119,10 +116,11 @@ const ITEM_PROMPTS: Record<string, string> = {
 }
 
 function pointColor(remaining: number) {
-  if (remaining > 9) return '#4ade80'
-  if (remaining > 4) return '#fbbf24'
-  if (remaining > 0) return '#fb923c'
-  return '#f87171'
+  if (remaining < 0)  return '#f87171'
+  if (remaining === 0) return '#f59e0b'
+  if (remaining > 9)  return '#4ade80'
+  if (remaining > 4)  return '#fbbf24'
+  return '#fb923c'
 }
 
 export default function Home() {
@@ -141,7 +139,7 @@ export default function Home() {
       const next = new Set(prev)
       if (next.has(item.id)) {
         next.delete(item.id)
-      } else if (remaining >= item.cost) {
+      } else {
         next.add(item.id)
       }
       return next
@@ -191,7 +189,7 @@ export default function Home() {
       {/* ── Sticky header ── */}
       <div className="sticky top-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-[#181818]">
         <div className="max-w-5xl mx-auto px-5 py-3 flex items-center justify-between">
-          <div className="text-[10px] tracking-[0.2em] text-[#666] uppercase select-none">
+          <div className="hidden sm:block text-[10px] tracking-[0.2em] text-[#666] uppercase select-none">
             ISOLATION PROTOCOL · FORM A7
           </div>
           <div className="flex items-center gap-2">
@@ -203,12 +201,17 @@ export default function Home() {
               {remaining}
             </span>
             <span className="text-[10px] tracking-widest text-[#666]">/ {BUDGET} PTS</span>
+            {remaining < 0 && (
+              <span className="text-[9px] tracking-widest uppercase transition-colors duration-300" style={{ color: '#f87171' }}>
+                OVER BUDGET
+              </span>
+            )}
           </div>
         </div>
         <div className="h-[2px] bg-[#111]">
           <div
             className="h-full transition-all duration-700 ease-out"
-            style={{ width: `${(remaining / BUDGET) * 100}%`, backgroundColor: color }}
+            style={{ width: `${Math.max(0, (remaining / BUDGET) * 100)}%`, backgroundColor: color }}
           />
         </div>
       </div>
@@ -253,8 +256,13 @@ export default function Home() {
             <p>
               Basic sustenance is provided: three daily portions of nutritionally
               complete porridge and water. You will not be deficient in anything.
-              You will not enjoy it. Sanitation is minimal.
-              Temperature is fixed at 20°C. There is nothing else.
+              You will not enjoy it.
+            </p>
+            <p>
+              A basic toilet is provided. Showering is done under a single head
+              delivering hand-warm water. You are issued one grey jumpsuit,
+              exchanged every three days. Temperature is fixed at 20°C.
+              There is nothing else.
             </p>
             <p className="text-[#777]">
               You have been allocated{' '}
@@ -288,32 +296,28 @@ export default function Home() {
 
             {/* Tier label */}
             <div className="flex items-center gap-3 mb-7">
-              <span className="text-[9px] tracking-[0.25em] text-[#555] uppercase font-bold">
+              <span className="text-[9px] tracking-[0.25em] text-[#555] uppercase font-bold shrink-0">
                 TIER {tier.number}
               </span>
               <div className="h-px flex-1 bg-[#222]" />
-              <span className="text-[10px] tracking-[0.2em] text-[#d4cfc7] uppercase">{tier.label}</span>
-              <div className="h-px w-6 bg-[#222]" />
-              <span className="text-[9px] tracking-widest text-[#666]">{tier.sublabel}</span>
+              <span className="text-[10px] tracking-[0.2em] text-[#d4cfc7] uppercase shrink-0">{tier.label}</span>
+              <div className="hidden sm:block h-px w-6 bg-[#222]" />
+              <span className="hidden sm:block text-[9px] tracking-widest text-[#666] shrink-0">{tier.sublabel}</span>
             </div>
 
             {/* Card grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
               {tier.items.map(item => {
                 const isSelected = selected.has(item.id)
-                const isDisabled = !isSelected && remaining < item.cost
 
                 return (
                   <button
                     key={item.id}
                     onClick={() => toggle(item)}
-                    disabled={isDisabled}
-                    className="text-left rounded-[3px] border overflow-hidden group transition-all duration-300"
+                    className="text-left rounded-[3px] border overflow-hidden group transition-all duration-300 cursor-pointer"
                     style={{
                       borderColor: isSelected ? '#f59e0b' : '#161616',
                       backgroundColor: isSelected ? '#120f00' : '#0f0f0f',
-                      opacity: isDisabled ? 0.25 : 1,
-                      cursor: isDisabled ? 'not-allowed' : 'pointer',
                       boxShadow: isSelected ? '0 0 24px rgba(245,158,11,0.12)' : 'none',
                     }}
                   >
@@ -429,13 +433,13 @@ export default function Home() {
         style={{ transform: remaining === 0 ? 'translateY(0)' : 'translateY(100%)' }}
       >
         <div className="border-t border-[#f59e0b]/30 bg-[#080808]/95 backdrop-blur-md">
-          <div className="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between gap-6">
+          <div className="max-w-5xl mx-auto px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-[11px] text-[#666] tracking-wide">
               15 / 15 points spent — your choices are locked in.
             </p>
             <button
               onClick={handleShare}
-              className="shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-[3px] text-[12px] font-bold tracking-widest uppercase transition-all duration-200"
+              className="w-full sm:w-auto shrink-0 flex items-center justify-center gap-2 px-5 py-2.5 rounded-[3px] text-[12px] font-bold tracking-widest uppercase transition-all duration-200"
               style={{
                 backgroundColor: copied ? '#166534' : '#f59e0b',
                 color: copied ? '#bbf7d0' : '#000',
